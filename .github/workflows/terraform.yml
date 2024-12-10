@@ -28,7 +28,7 @@ jobs:
     - name: Setup Terraform
       uses: google-github-actions/auth@v2
       with:
-        cli_config_credentials_token: ${{ secrets.KEYFILE_JSON }}
+        credentials_json: ${{ secrets.KEYFILE_JSON }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
