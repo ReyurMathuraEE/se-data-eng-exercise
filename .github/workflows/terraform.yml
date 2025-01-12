@@ -30,7 +30,15 @@ jobs:
       uses: google-github-actions/auth@v2
       with:
         credentials_json: ${{ secrets.GCP_KEYFILE_JSON }}
-          
+
+    - name: Install Terraform
+      # You may pin to the exact commit or the version.
+      # uses: little-core-labs/install-terraform@1e577535d279f1999a5abf60337ddc3ff225e79d
+      uses: little-core-labs/install-terraform@v2.0.0
+      with:
+        # Version of terraform to download
+        version: 2.0.0
+      
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init -input=false
