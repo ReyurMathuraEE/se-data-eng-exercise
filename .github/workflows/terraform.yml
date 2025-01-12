@@ -30,23 +30,17 @@ jobs:
       uses: google-github-actions/auth@v2
       with:
         credentials_json: ${{ secrets.GCP_KEYFILE_JSON }}
-
-    # Install Terraform
-    - name: Install Terraform
-      uses: little-core-labs/install-terraform@v2.0.0
-      with:
-        version: 2.0.0
           
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: cd terraform && terraform init
+      run: terraform -chdir="./terraform" init -input=false
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: cd terraform && terraform plan -input=false
+      run: terraform -chdir="./terraform" plan -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
-      run: cd terraform && terraform apply -auto-approve -input=false
+      run: terraform -chdir="./terraform" apply -auto-approve -input=false
