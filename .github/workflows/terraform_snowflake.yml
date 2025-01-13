@@ -31,7 +31,7 @@ jobs:
           TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           TF_VAR_SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           TF_VAR_SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        run: cd terraform/snowflake && terraform init -input=false -var snowflake_account=TF_VAR_SNOWFLAKE_ACCOUNT -var snowflake_username=TF_VAR_SNOWFLAKE_USERNAME -var snowflake_password=SNOWFLAKE_PASSWORD -var snowflake_role=TF_VAR_SNOWFLAKE_ROLE -var snowflake_warehouse=TF_VAR_SNOWFLAKE_WAREHOUSE -var snowflake_database=TF_VAR_SNOWFLAKE_DATABASE -var snowflake_schema=TF_VAR_SNOWFLAKE_SCHEMA
+        run: cd terraform/snowflake && snowflake_account=TF_VAR_SNOWFLAKE_ACCOUNT snowflake_username=TF_VAR_SNOWFLAKE_USERNAME snowflake_password=SNOWFLAKE_PASSWORD snowflake_role=TF_VAR_SNOWFLAKE_ROLE snowflake_warehouse=TF_VAR_SNOWFLAKE_WAREHOUSE snowflake_database=TF_VAR_SNOWFLAKE_DATABASE snowflake_schema=TF_VAR_SNOWFLAKE_SCHEMA terraform init -input=false
 
       - name: Plan Terraform
         env:
@@ -42,7 +42,7 @@ jobs:
           TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           TF_VAR_SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           TF_VAR_SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        run: cd terraform/snowflake && terraform plan -input=false -var snowflake_account=TF_VAR_SNOWFLAKE_ACCOUNT -var snowflake_username=TF_VAR_SNOWFLAKE_USERNAME -var snowflake_password=SNOWFLAKE_PASSWORD -var snowflake_role=TF_VAR_SNOWFLAKE_ROLE -var snowflake_warehouse=TF_VAR_SNOWFLAKE_WAREHOUSE -var snowflake_database=TF_VAR_SNOWFLAKE_DATABASE -var snowflake_schema=TF_VAR_SNOWFLAKE_SCHEMA
+        run: cd terraform/snowflake && snowflake_account=TF_VAR_SNOWFLAKE_ACCOUNT snowflake_username=TF_VAR_SNOWFLAKE_USERNAME snowflake_password=SNOWFLAKE_PASSWORD snowflake_role=TF_VAR_SNOWFLAKE_ROLE snowflake_warehouse=TF_VAR_SNOWFLAKE_WAREHOUSE snowflake_database=TF_VAR_SNOWFLAKE_DATABASE snowflake_schema=TF_VAR_SNOWFLAKE_SCHEMA terraform plan -input=false
 
       - name: Apply Terraform
         if: github.event.inputs.apply == 'true'
@@ -54,4 +54,4 @@ jobs:
           TF_VAR_SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           TF_VAR_SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           TF_VAR_SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        run: cd terraform/snowflake && terraform apply -auto-approve -input=false -var snowflake_account=TF_VAR_SNOWFLAKE_ACCOUNT -var snowflake_username=TF_VAR_SNOWFLAKE_USERNAME -var snowflake_password=SNOWFLAKE_PASSWORD -var snowflake_role=TF_VAR_SNOWFLAKE_ROLE -var snowflake_warehouse=TF_VAR_SNOWFLAKE_WAREHOUSE -var snowflake_database=TF_VAR_SNOWFLAKE_DATABASE -var snowflake_schema=TF_VAR_SNOWFLAKE_SCHEMA
+        run: cd terraform/snowflake && snowflake_account=TF_VAR_SNOWFLAKE_ACCOUNT snowflake_username=TF_VAR_SNOWFLAKE_USERNAME snowflake_password=SNOWFLAKE_PASSWORD snowflake_role=TF_VAR_SNOWFLAKE_ROLE snowflake_warehouse=TF_VAR_SNOWFLAKE_WAREHOUSE snowflake_database=TF_VAR_SNOWFLAKE_DATABASE snowflake_schema=TF_VAR_SNOWFLAKE_SCHEMA terraform apply -auto-approve -input=false
