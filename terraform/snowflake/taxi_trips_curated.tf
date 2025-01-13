@@ -142,6 +142,4 @@ resource "snowflake_table" "taxi_trips_curated" {
     comment = "Record creation timestamp"
     default = "CURRENT_TIMESTAMP()"
   }
-
-  comment = "Taxi trips curated table"
 }
