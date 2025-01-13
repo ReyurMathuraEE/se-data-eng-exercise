@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    snowflake = {
+      source  = "snowflake/snowflake"
+      version = "~> 2.0"
+    }
+  }
+}
+
 provider "snowflake" {
   account   = var.snowflake_account
   username  = var.snowflake_username
