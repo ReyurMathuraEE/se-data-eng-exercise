@@ -31,7 +31,7 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        run: cd terraform/snowflake && terraform init
+        run: cd terraform/snowflake && terraform init -input=false
 
       - name: Plan Terraform
         env:
@@ -42,7 +42,7 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        run: cd terraform/snowflake && terraform plan
+        run: cd terraform/snowflake && terraform plan -input=false
 
       - name: Apply Terraform
         if: github.event.inputs.apply == 'true'
@@ -54,4 +54,4 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
           SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        run: cd terraform/snowflake && terraform apply -auto-approve
+        run: cd terraform/snowflake && terraform apply -auto-approve -input=false
