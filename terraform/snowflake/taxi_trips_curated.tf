@@ -140,6 +140,5 @@ resource "snowflake_table" "taxi_trips_curated" {
     name = "CREATED_TIMESTAMP"
     type = "TIMESTAMP_NTZ"
     comment = "Record creation timestamp"
-    default = "CURRENT_TIMESTAMP()"
   }
 }
