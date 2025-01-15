@@ -3,7 +3,6 @@ from airflow.providers.google.cloud.hooks.gcs import GCSHook
 from datetime import datetime
 import os
 
-# Replace with your GCS bucket name
 BUCKET_NAME = "se-data-landing-reyur"
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LOCAL_FILE_PATH = os.path.join(SCRIPT_DIR, "hello_world.txt")
@@ -19,9 +18,7 @@ REMOTE_FILE_NAME = "hello_world.txt"
 def hello_world_gcs():
     @task
     def read_local_file() -> str:
-        """
-        Reads content from a local file.
-        """
+
         if not os.path.exists(LOCAL_FILE_PATH):
             raise FileNotFoundError(f"The file {LOCAL_FILE_PATH} does not exist.")
 
@@ -33,9 +30,7 @@ def hello_world_gcs():
 
     @task
     def write_to_gcs(file_content: str):
-        """
-        Uploads the local file content to the specified GCS bucket.
-        """
+
         gcs_hook = GCSHook()
         gcs_hook.upload(
             bucket_name=BUCKET_NAME,
@@ -46,9 +41,7 @@ def hello_world_gcs():
 
     @task
     def read_from_gcs():
-        """
-        Downloads the uploaded file content from GCS and prints it.
-        """
+
         gcs_hook = GCSHook()
         content = gcs_hook.download(
             bucket_name=BUCKET_NAME,
