@@ -21,6 +21,14 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.6
+          
+      # Set environment variable for sample_file_name
+      - name: Set sample_file_name variable
+        run: echo "TF_VAR_sample_file_name=${{ secrets.SAMPLE_FILE_NAME }}" >> $GITHUB_ENV
+
+      # Debug Variables
+      - name: Debug variables
+        run: echo "Sample file name:$TF_VAR_sample_file_name"
 
       - name: Initialize Terraform
         env:
