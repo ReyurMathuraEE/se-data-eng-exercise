@@ -1,7 +1,7 @@
 resource "snowflake_table" "taxi_trips_curated" {
   name      = "TAXI_TRIPS_CURATED"
-  database  = var.snowflake_database
-  schema    = var.snowflake_schema
+  database  = var.database
+  schema    = var.schema
   comment   = "Curated table for taxi trips"
 
   column {
