@@ -38,7 +38,7 @@ jobs:
           TF_VAR_password: ${{ secrets.TF_VAR_PASSWORD }}
           TF_VAR_schema: ${{ secrets.TF_VAR_SCHEMA }}
           TF_VAR_user: ${{ secrets.TF_VAR_USER }}
-        run: echo ${{ secrets.TF_VAR_USER }} #cd terraform/snowflake && terraform init -input=false
+        run: cd terraform/snowflake && terraform init -input=false
 
       - name: Plan Terraform
         env:
