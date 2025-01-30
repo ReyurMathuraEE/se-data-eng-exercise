@@ -8,7 +8,7 @@ provider "google" {
 # Define the GCS bucket resource
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
 resource "google_storage_bucket" "landing_bucket" {
-  name                        = "se-data-landing-reyur"
+  name                        = "ee-se-data-engg/reyur"
   location                    = "us-central1"
   storage_class               = "STANDARD"
   force_destroy               = false
