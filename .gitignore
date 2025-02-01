@@ -36,3 +36,8 @@ terraform.rc
 # Ignore directories created by popular editors and IDEs
 .vscode/
 .idea/
+
+# local setup
+*.tfvars
+*.pem
+*.pub
