@@ -49,7 +49,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: | 
-        echo "Private key is: $TF_VAR_private_key" && cd terraform && terraform init -input=false
+        echo "Private key is: $TF_VAR_private_key" >> $GITHUB_ENV && cd terraform && terraform init -input=false
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
