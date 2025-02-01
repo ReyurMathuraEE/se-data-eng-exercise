@@ -6,7 +6,7 @@ resource "google_storage_bucket_object" "content_folder" {
 }
 
 resource "snowflake_table" "TAXI_TRIPS_RAW" {
-  name      = "TAXI_TRIPS_CURATED"
+  name      = "TAXI_TRIPS_RAW"
   database  = var.database
   schema    = var.schema
   comment   = "Curated table for taxi trips"
