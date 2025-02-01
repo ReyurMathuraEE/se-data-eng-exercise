@@ -15,3 +15,27 @@ variable "gcp_bucket" {
   type        = string
   default     = "ee-se-data-engg"
 }
+
+variable "user" {
+    type = string
+}
+
+variable "organization_name" {
+    type = string
+}
+
+variable "account_name" {
+    type = string
+}
+
+variable "password" {
+    type = string
+}
+
+variable "database" {
+    type = string
+}
+
+variable "schema" {
+    type = string
+}

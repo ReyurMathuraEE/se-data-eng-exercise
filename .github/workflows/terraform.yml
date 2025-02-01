@@ -15,6 +15,13 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
+    env:
+          TF_VAR_account_name: ${{ secrets.TF_VAR_ACCOUNT_NAME }}
+          TF_VAR_database: ${{ secrets.TF_VAR_DATABASE }}
+          TF_VAR_organization_name: ${{ secrets.TF_VAR_ORGANIZATION_NAME }}
+          TF_VAR_password: ${{ secrets.TF_VAR_PASSWORD }}
+          TF_VAR_schema: ${{ secrets.TF_VAR_SCHEMA }}
+          TF_VAR_user: ${{ secrets.TF_VAR_USER }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
