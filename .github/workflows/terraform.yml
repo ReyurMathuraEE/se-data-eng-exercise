@@ -22,7 +22,7 @@ jobs:
           TF_VAR_password: ${{ secrets.TF_VAR_PASSWORD }}
           TF_VAR_schema: ${{ secrets.TF_VAR_SCHEMA }}
           TF_VAR_user: ${{ secrets.TF_VAR_USER }}
-          TF_VAR_private_key: ${{ secrets.TF_VAR_USER }}
+          TF_VAR_private_key: ${{ secrets.TF_VAR_PRIVATE_KEY }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -48,7 +48,7 @@ jobs:
     
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: echo ${{ TF_VAR_private_key }} && cd terraform && terraform init -input=false
+      run: cd terraform && terraform init -input=false
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
