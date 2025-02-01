@@ -5,7 +5,7 @@ resource "google_storage_bucket_object" "content_folder" {
   bucket        = var.gcp_bucket
 }
 
-resource "snowflake_table" "taxi_trips_curated" {
+resource "snowflake_table" "TAXI_TRIPS_RAW" {
   name      = "TAXI_TRIPS_CURATED"
   database  = var.database
   schema    = var.schema
