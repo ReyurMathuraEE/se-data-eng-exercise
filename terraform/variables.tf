@@ -39,3 +39,7 @@ variable "database" {
 variable "schema" {
     type = string
 }
+
+variable "private_key" {
+    type = string
+}

@@ -18,7 +18,8 @@ provider "snowflake" {
   organization_name = var.organization_name
   account_name      = var.account_name
   user              = var.user
-  password          = var.password
+  authenticator          = "SNOWFLAKE_JWT"
+  private_key            = var.private_key
 
   preview_features_enabled = ["snowflake_table_resource"]
 }
