@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: snowflake
+    database: EE_SE_DE_DB
+    schema: REYURM
+    tables:
+      - name: TAXI_TRIPS_RAW

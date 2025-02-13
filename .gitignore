@@ -41,3 +41,10 @@ terraform.rc
 *.tfvars
 *.pem
 *.pub
+target/
+dbt_packages/
+logs/
+dbts/logs
+dbts/target
+dbts/profiles.yml
+logs/

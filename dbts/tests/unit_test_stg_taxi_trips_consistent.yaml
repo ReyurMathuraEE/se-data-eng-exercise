@@ -1,0 +1,50 @@
+unit_tests:
+  - name: unit_test_stg_taxi_trips_consistent
+    model: stg_taxi_trips_consistent
+    given:
+      - input: source('snowflake', 'TAXI_TRIPS_RAW')
+        rows:
+          - vendor_name: 1
+            tpep_pickup_datetime: '2025-02-01 12:00:00'
+            tpep_dropoff_datetime: '2025-02-01 12:30:00'
+            passenger_count: 2
+            trip_distance: 3.5
+            pickup_longitude: -73.9823684700000000
+            pickup_latitude: 40.7652511600000000
+            RatecodeID: 1
+            store_and_fwd_flag: 'N'
+            dropoff_longitude: -74.00325775
+            dropoff_latitude: 40.73270035
+            payment_type: 2
+            payment_type_name: 'Card'
+            fare_amount: 12.50
+            extra: 0.50
+            mta_tax: 0.50
+            tip_amount: 2.50
+            tolls_amount: 0.00
+            improvement_surcharge: 0.30
+            total_amount: 16.30
+            created_timestamp: '2025-02-01 12:30:00'
+    expect:
+      rows:
+        - vendor_id: 1
+          tpep_pickup_datetime: '2025-02-01 12:00:00'
+          tpep_dropoff_datetime: '2025-02-01 12:30:00'
+          passenger_count: 2
+          trip_distance: 3.5
+          pickup_longitude: -73.9823684700000000
+          pickup_latitude: 40.7652511600000000
+          ratecode_id: 1
+          store_and_fwd_flag: 'N'
+          dropoff_longitude: -74.00325775
+          dropoff_latitude: 40.73270035
+          payment_type: 2
+          payment_type_name: 'Card'
+          fare_amount: 12.50
+          extra: 0.50
+          mta_tax: 0.50
+          tip_amount: 2.50
+          tolls_amount: 0.00
+          improvement_surcharge: 0.30
+          total_amount: 16.30
+          created_timestamp: '2025-02-01 12:30:00'
