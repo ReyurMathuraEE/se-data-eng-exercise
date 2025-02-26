@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_taxi_trips_consistent
+    description: "Staging table for taxi trips with data quality checks"
+    columns:
+      - name: vendor_id
+        tests:
+          - not_null
+
+      - name: pickup_longitude
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "!=0"
+
+      - name: pickup_latitude
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "!=0"
+
+      - name: dropoff_longitude
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "!=0"
+
+      - name: dropoff_latitude
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "!=0"
+
+      - name: trip_distance
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "!=0"
+
+      - name: tpep_pickup_datetime
+        tests:
+          - not_null
+
+      - name: tpep_dropoff_datetime
+        tests:
+          - not_null
+
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "NOT(tpep_dropoff_datetime < tpep_pickup_datetime)"
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["vendor_id", "tpep_pickup_datetime", "pickup_longitude", "pickup_latitude"]
