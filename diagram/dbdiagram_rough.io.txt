@@ -1,0 +1,83 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+Table taxi_trips_consistent {
+CREATED_TIMESTAMP datetime
+DROPOFF_LATITUDE integer
+DROPOFF_LONGITUDE integer
+EXTRA integer
+FARE_AMOUNT integer
+IMPROVEMENT_SURCHARGE integer
+MTA_TAX integer
+PASSENGER_COUNT integer
+PAYMENT_TYPE integer
+PAYMENT_TYPE_NAME Varchar
+PICKUP_LATITUDE integer
+PICKUP_LONGITUDE integer
+RATECODE_ID integer
+STORE_AND_FWD_FLAG Varchar
+TIP_AMOUNT integer
+TOLLS_AMOUNT integer
+TOTAL_AMOUNT integer
+TPEP_DROPOFF_DATETIME datetime
+TPEP_PICKUP_DATETIME datetime
+TRIP_DISTANCE integer
+TRIP_DURATION_MINUTES integer
+TRIP_SPEED_MPH integer
+VENDOR_NAME Varchar
+}
+
+Table fact_taxi_trips {
+TRIP_ID integer [primary key]
+VENDOR_ID integer
+PAYMENT_ID integer
+PICKUP_LOCATION_ID integer
+DROPOFF_LOCATION_ID integer
+PICKUP_DATE_ID integer
+DROPOFF_DATE_ID integer
+CREATED_DATE_ID integer
+STORE_AND_FWD_FLAG Varchar
+TRIP_DISTANCE integer
+TRIP_DURATION_MINUTES integer
+TRIP_SPEED_MPH integer
+PAYMENT_TYPE integer
+RATECODE_ID integer
+TIP_AMOUNT integer
+TOLLS_AMOUNT integer
+TOTAL_AMOUNT integer
+MTA_TAX integer
+EXTRA integer
+FARE_AMOUNT integer
+IMPROVEMENT_SURCHARGE integer
+PASSENGER_COUNT integer
+}
+
+Table dim_vendor {
+  VENDOR_ID integer [primary key]
+  VENDOR_NAME Varchar
+}
+
+Table dim_payment_type {
+  PAYMENT_TYPE_ID integer [primary key]
+  PAYMENT_TYPE_NAME Varchar
+}
+
+Table dim_location {
+  LOCATION_ID integer [primary key]
+  LATITUDE integer
+  LONGITUDE integer
+}
+
+Table dim_date {
+  DATE_ID integer [primary key]
+  DATE datetime
+  YEAR year
+  MONTH month
+  WEEK week
+  WEEK_OF_THE_YEAR integer
+  DAY_OF_WEEK integer
+}
+
+Ref: fact_taxi_trips.VENDOR_ID > dim_vendor.VENDOR_ID
+Ref: fact_taxi_trips.PAYMENT_ID > dim_payment_type.PAYMENT_TYPE_ID
+Ref: fact_taxi_trips.DATE_ID > dim_date.DATE_ID
+Ref: fact_taxi_trips.LOCATION_ID > dim_location.LOCATION_ID

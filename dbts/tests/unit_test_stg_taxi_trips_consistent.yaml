@@ -1,6 +1,9 @@
 unit_tests:
   - name: unit_test_stg_taxi_trips_consistent
     model: stg_taxi_trips_consistent
+    overrides:
+      macros:
+        is_incremental: false
     given:
       - input: source('snowflake', 'TAXI_TRIPS_RAW')
         rows:

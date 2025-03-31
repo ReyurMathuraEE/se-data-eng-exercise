@@ -1,6 +1,6 @@
 {{ config(
     materialized='incremental',
-    unique_key='created_timestamp',
+    unique_key=['VENDOR_ID', 'TPEP_PICKUP_DATETIME', 'PICKUP_LONGITUDE', 'PICKUP_LATITUDE'],
     on_schema_change='sync_all_columns',
     incremental_strategy='merge'
 ) }}
@@ -124,3 +124,9 @@ deduplicated AS (
 )
 
 SELECT * FROM deduplicated WHERE row_num = 1
+{% if is_incremental() %}
+AND CREATED_TIMESTAMP > (
+    SELECT COALESCE(MAX(CREATED_TIMESTAMP), TO_TIMESTAMP('1900-01-01 00:00:00'))
+    FROM {{ source('snowflake', 'TAXI_TRIPS_CONSISTENT') }}
+)
+{% endif %}

@@ -6,3 +6,4 @@ sources:
     schema: REYURM
     tables:
       - name: TAXI_TRIPS_RAW
+      - name: TAXI_TRIPS_CONSISTENT
