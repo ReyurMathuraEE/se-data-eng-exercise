@@ -80,6 +80,18 @@ def taxi_trips_dag():
         dbt_run.execute(context={})
         print("DBT model run successful")
 
-    load_to_snowflake() >> dbt_run_model() >> dbt_test_model() >> dbt_cleansed_model()
+    @task
+    def dbt_dim_fact():
+        # Creates dim and fact tables
+
+        dbt_run = BashOperator(
+            task_id="dbt_dim_fact",
+            bash_command=f"cd {DBT_PROJECT_DIR} && dbt run --select tag:taxi_trips",
+        )
+
+        dbt_run.execute(context={})
+        print("DBT model run successful")
+
+    load_to_snowflake() >> dbt_run_model() >> dbt_test_model() >> dbt_cleansed_model() >> dbt_dim_fact()
 
 taxi_trips_dag_instance = taxi_trips_dag()
